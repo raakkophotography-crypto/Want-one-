@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#ffe7ef">
+<meta name="description" content="A little pink love garden, made with love for My Wifey.">
+<title>For My Wifey ♡</title>
+<style>
+:root{--pink:#ff8fab;--pink2:#f7b2c8;--rose:#c45178;--ink:#694456;--cream:#fff9fb;--lav:#e8d8f4;--line:#ffd5e2;--shadow:0 14px 38px #a64b6a14}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 10% 10%,#fff 0,transparent 25%),linear-gradient(150deg,#fff9fb,#ffe6ee 55%,#f8edff);font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink);overflow-x:hidden}
+button,input{font:inherit}button{cursor:pointer;border:0;border-radius:999px;padding:12px 18px;background:var(--pink);color:#fff;font-weight:800;box-shadow:0 5px 0 #df7395;transition:transform .16s,filter .16s}button:hover{filter:saturate(1.08);transform:translateY(-2px)}button:active{transform:translateY(2px);box-shadow:0 2px 0 #df7395}button:focus-visible,input:focus-visible{outline:3px solid #bd7bd1;outline-offset:3px}
+button.secondary{background:#fff;color:var(--rose);border:1px solid var(--line);box-shadow:0 4px 0 #f2d3df}button.soft{background:#f0dff7;color:#835b8e;box-shadow:0 4px 0 #d7bce5}
+.wrap{width:min(960px,92%);margin:auto;padding:18px 0 52px}
+nav{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 2px}.brand{font-weight:950;color:var(--rose);letter-spacing:.5px}.navpill{font-size:.8rem;background:#ffffffb8;border:1px solid white;padding:8px 12px;border-radius:99px}
+.hero{text-align:center;padding:42px 12px 30px;position:relative}.eyebrow{text-transform:uppercase;letter-spacing:3px;font-size:.72rem;font-weight:900;color:#c66c8b}.hero h1{font-size:clamp(2.8rem,10vw,5.7rem);line-height:.98;letter-spacing:-3px;margin:15px 0;color:#b94d77}.hero h1 span{font-family:Georgia,serif;font-weight:400;font-style:italic}.hero p{max-width:550px;margin:20px auto;line-height:1.75;font-size:1.04rem}.hero .actions{display:flex;justify-content:center;flex-wrap:wrap;gap:10px}
+.heart-orbit{font-size:2.8rem;display:inline-block;animation:beat 1.4s infinite;filter:drop-shadow(0 6px 10px #ef94b65c)}@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:16px}.card{background:#ffffffd9;border:1px solid #fff;border-radius:25px;padding:23px;box-shadow:var(--shadow);backdrop-filter:blur(9px);min-width:0}.full{grid-column:1/-1}.card h2{font-size:1.25rem;margin:0 0 8px}.card p{line-height:1.65;margin:8px 0 16px}.kicker{font-size:.72rem;letter-spacing:2px;text-transform:uppercase;color:#c16c8b;font-weight:900}.center{text-align:center}
+.meter{height:14px;background:#f7dce5;border-radius:99px;overflow:hidden;margin:16px 0 10px}.meter span{height:100%;display:block;width:0;background:linear-gradient(90deg,#ff8fab,#d8a9ed);border-radius:99px;transition:width .3s}.result{min-height:25px;font-weight:800;color:var(--rose);line-height:1.55;margin-top:12px}.note{display:none;margin-top:14px;padding:17px;background:#fff2f6;border:1px dashed #f3a8c2;border-radius:18px;line-height:1.8}.pill{display:inline-block;background:#fff3f7;border:1px solid var(--line);padding:7px 12px;border-radius:99px;font-size:.86rem}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.field{width:100%;padding:12px 14px;border:1px solid #f2b8cc;border-radius:14px;background:#fffafd;color:var(--ink);outline:none}.field:focus{border-color:#d77ea0}
+.choices{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}.choice{border-radius:15px;background:#fff2f6;color:var(--rose);box-shadow:none;border:1px solid #ffd3e0;padding:12px 10px;text-align:left}.choice.selected{background:#ff8fab;color:#fff;border-color:#ff8fab}
+#hearts{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:15px 0}.heart-btn{padding:10px 0;border-radius:14px;background:#fff0f5;color:#b64f78;box-shadow:none;border:1px solid #ffd3e0;font-size:1.3rem}.heart-btn.found{background:#ff8fab;color:white}.heart-btn:disabled{opacity:.65;cursor:default}
+#memoryGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:15px 0}.tile{aspect-ratio:1;border-radius:15px;background:#f5d9e7;color:#b64f78;box-shadow:none;padding:0;font-size:clamp(1.15rem,5vw,1.65rem)}.tile.open,.tile.matched{background:white;border:1px solid #f3abc4;box-shadow:none}.tile.matched{opacity:.65}
+.secret-box{background:#fff4f8;border-radius:17px;padding:15px;margin-top:12px}.proposal{background:linear-gradient(145deg,#fff2f7,#f7e9ff);border:1px solid #fff;border-radius:22px;padding:20px;margin-top:12px}.proposal h3{font-family:Georgia,serif;font-size:clamp(1.6rem,5vw,2.3rem);color:#b94d77;margin:10px 0}.proposal-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}.hidden{display:none!important}
+footer{text-align:center;padding:30px 10px 0;font-size:.9rem;opacity:.8}
+.float{position:fixed;pointer-events:none;z-index:-1;animation:drift 10s linear infinite;opacity:.38}@keyframes drift{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-15vh) rotate(360deg)}}
+.burst{position:fixed;z-index:50;pointer-events:none;left:50%;top:52%;font-size:2rem;animation:burst 1.5s ease-out forwards}@keyframes burst{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}15%{opacity:1}100%{opacity:0;transform:translate(calc(-50% + var(--x)),calc(-50% + var(--y))) rotate(var(--r)) scale(1.3)}}
+.hug-scene{font-size:3rem;min-height:70px;margin:8px 0}.hug-emoji{display:inline-block;animation:hug 1s ease-in-out infinite alternate}@keyframes hug{from{transform:scale(.9) rotate(-5deg)}to{transform:scale(1.12) rotate(5deg)}}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:19px}.hero{padding:30px 5px 22px}.hero h1{letter-spacing:-1.8px}.choices{grid-template-columns:1fr 1fr}.navpill{font-size:.72rem}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><div class="brand">♡ love garden</div><span class="navpill">a little gift for you ✿</span></nav>
+<header class="hero">
+  <div class="heart-orbit">💗</div>
+  <div class="eyebrow">a tiny corner of the internet</div>
+  <h1>For <span>My Wifey</span></h1>
+  <p>I made this little pink world just for you. Explore, play a few games, unlock a secret, and remember that you are loved more than words can explain. 🎀</p>
+  <div class="actions"><button onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">Let's explore ♡</button><button class="secondary" onclick="sendHugs()">Send a hug 🫂</button></div>
+</header>
+
+<div class="grid">
+<section class="card full center">
+  <div class="kicker">scientifically questionable, emotionally accurate</div><h2>Our love meter 💞</h2><p>Every tap adds a little more love. It might just overflow.</p>
+  <div class="meter"><span id="meterFill"></span></div><div class="result" id="meterText">Love level: too much to measure ♡</div>
+  <button id="loveBtn">Add more love 💗</button>
+</section>
+
+<section class="card">
+  <div class="kicker">open whenever you need it</div><h2>💌 A little letter</h2><p>There are things I hope you never forget, even on a difficult day.</p>
+  <button id="noteBtn">Open your note</button>
+  <div class="note" id="loveNote">My Wifey, if I could give you one thing, it would be the ability to see yourself through my eyes. Then you'd understand how precious, beautiful, and loved you are. You make ordinary moments feel special, and you bring warmth into my world just by being you. Whatever today looks like, I hope you remember that you matter so much. I'm sending you the biggest hug. ♡</div>
+</section>
+
+<section class="card">
+  <div class="kicker">our next little adventure</div><h2>🌷 Date idea generator</h2><p>Let's let fate pick something cute for us to do.</p>
+  <button id="dateBtn">Pick our date ✨</button><div class="result" id="dateResult">Our next adventure is waiting…</div>
+</section>
+
+<section class="card" id="games">
+  <div class="kicker">mini-game 01</div><h2>💘 Catch the hearts</h2><p>Find all 5 hidden hearts before you run out of taps!</p>
+  <div class="pill" id="heartCount">Hearts found: 0/5 · Taps left: 10</div><div id="hearts"></div><div class="result" id="heartResult"></div><button class="secondary" id="heartReset">Play again ↻</button>
+</section>
+
+<section class="card">
+  <div class="kicker">mini-game 02</div><h2>🧸 Love memory</h2><p>Match the pairs of cute little symbols. How many moves will you need?</p>
+  <div class="pill" id="memoryStatus">Moves: 0 · Pairs: 0/6</div><div id="memoryGrid"></div><div class="result" id="memoryResult"></div><button class="secondary" id="memoryReset">Shuffle & play ↻</button>
+</section>
+
+<section class="card full">
+  <div class="kicker">let's see how well you know us</div><h2>💗 A tiny romantic quiz</h2>
+  <p>Three little questions, no pressure. Just choose the answer that feels right. ♡</p>
+  <div id="quizArea"></div><div class="result" id="quizResult"></div>
+  <div class="row" style="margin-top:12px"><button id="quizNext">Start the quiz 💞</button><button class="secondary hidden" id="quizAgain">Try again ↻</button></div>
+  <p style="font-size:.82rem;opacity:.75;margin-bottom:0">Psst… this is a just-for-fun quiz, not a test. You can customize the questions in the HTML if you want them to be personal to your relationship.</p>
+</section>
+
+<section class="card">
+  <div class="kicker">a secret, just for you</div><h2>🔐 Secret message</h2><p>There's a little message tucked away. Enter the special password to unlock it.</p>
+  <div class="secret-box"><label for="secretPassword">Password</label><input class="field" id="secretPassword" type="password" placeholder="Enter the secret password" autocomplete="off" style="margin:8px 0 10px"><div class="row"><button id="unlockBtn">Unlock 💌</button><button class="secondary" id="showPass">Show</button></div><div class="result" id="secretFeedback"></div><div class="note" id="secretMessage">My Wifey, you are one of the sweetest parts of my life. If I could choose a thousand times, I'd still choose the moments that bring me closer to you. Thank you for being you. Wherever life takes us, I hope we keep finding reasons to laugh, to be gentle with each other, and to choose each other. I love you, always and a little more every day. ♡</div></div>
+  <p style="font-size:.8rem;opacity:.72">Hint: It contains 4 numbers, but it’s a date 💗. You can change it in the HTML. This is a cute surprise lock, not strong security—the password and message are stored in the page source.</p>
+</section>
+
+<section class="card">
+  <div class="kicker">the question of questions</div><h2>💍 A tiny proposal</h2><p>Ready for one very important question?</p>
+  <button id="proposalBtn">Tap for a surprise 🎁</button>
+  <div class="proposal hidden" id="proposalBox"><div style="font-size:2.2rem">🌹💗🌹</div><h3>My Wifey, will you keep choosing me?</h3><p>For the silly moments, the quiet days, the adventures, and all the little things in between. I want to keep making memories with you. ♡</p><div class="proposal-actions"><button id="yesBtn">Always, yes! 💖</button><button class="secondary" id="moreBtn">Tell me more 🥹</button></div><div class="result" id="proposalResult"></div></div>
+</section>
+
+<section class="card full center">
+  <div class="kicker">one last surprise</div><h2>🫂 Your hug is ready</h2><p>Whenever you need a little warmth, press the button and imagine me squeezing you tight.</p>
+  <div class="hug-scene" id="hugScene"><span class="hug-emoji">🧸</span> 💗 <span class="hug-emoji">🧸</span></div>
+  <div class="row" style="justify-content:center"><button id="hugBtn">Big virtual hug 🫂</button><button class="secondary" id="kissBtn">A little kiss 😘</button></div><div class="result" id="hugResult">Wrapping you in the biggest hug… ♡</div>
+</section>
+</div>
+<footer>made with all my love, for My Wifey ♡<br><span style="font-size:.78rem">a tiny pink reminder that you are loved</span></footer>
+</div>
+<script>
+const $=id=>document.getElementById(id);
+function burst(emojis=['💗','💕','✨','🌸'],count=18){
+ for(let i=0;i<count;i++){const el=document.createElement('span');el.className='burst';el.textContent=emojis[Math.floor(Math.random()*emojis.length)];el.style.setProperty('--x',(Math.random()*420-210)+'px');el.style.setProperty('--y',(Math.random()*-360-40)+'px');el.style.setProperty('--r',(Math.random()*100-50)+'deg');el.style.animationDelay=(Math.random()*.22)+'s';document.body.appendChild(el);setTimeout(()=>el.remove(),1900)}
+}
+function sendHugs(){burst(['🫂','💗','💕','🌷'],22);$('hugResult').textContent='Surprise hug delivered! Hold it as long as you need. ♡';$('hugScene').innerHTML='<span class="hug-emoji">🫂</span> 💗 <span class="hug-emoji">🧸</span>'}
+let love=0;
+$('meterText').textContent='Love level: 0% (but already endless)';
+$('loveBtn').onclick=()=>{love=Math.min(100,love+10);$('meterFill').style.width=love+'%';$('meterText').textContent=love<100?`Love level: ${love}% and still growing 💗`:'100%… ERROR: love overflowed the meter! ♡';if(love===100){$('loveBtn').textContent='Still more love!! 💖';burst()}};
+$('noteBtn').onclick=()=>{const n=$('loveNote');n.style.display=n.style.display==='block'?'none':'block';$('noteBtn').textContent=n.style.display==='block'?'Fold my note 💌':'Open your note'};
+const dates=['A sunset walk with our favorite snacks 🌅','A cozy movie night under one blanket 🍿','Making silly photos together 📸','A mini picnic and cloud-watching ☁️','Cooking something new and probably making a mess 🍓','A late-night talk with no distractions 🌙','A little adventure somewhere new 🚲','Stargazing and making wishes ✨'];
+$('dateBtn').onclick=()=>{$('dateResult').textContent=dates[Math.floor(Math.random()*dates.length)];burst(['🌷','✨','💗'],8)};
+let heartTargets=[],found=new Set(),taps=0;
+function setupHearts(){heartTargets=[];found=new Set();taps=0;while(heartTargets.length<5){let n=Math.floor(Math.random()*15);if(!heartTargets.includes(n))heartTargets.push(n)}$('hearts').innerHTML='';$('heartResult').textContent='';for(let i=0;i<15;i++){const b=document.createElement('button');b.className='heart-btn';b.textContent='♡';b.setAttribute('aria-label','Hidden heart spot '+(i+1));b.onclick=()=>{if(b.disabled||found.has(i)||taps>=10)return;taps++;if(heartTargets.includes(i)){found.add(i);b.textContent='💗';b.classList.add('found')}else{b.textContent='·';b.disabled=true}$('heartCount').textContent=`Hearts found: ${found.size}/5 · Taps left: ${10-taps}`;if(found.size===5){$('heartResult').textContent='You found every heart! One of them has been yours all along. 💞';burst()}else if(taps===10)$('heartResult').textContent='Out of taps! But you still have all my love. Try again? ♡'};$('hearts').appendChild(b)}$('heartCount').textContent='Hearts found: 0/5 · Taps left: 10'}
+$('heartReset').onclick=setupHearts;setupHearts();
+const symbols=['💗','🌷','⭐','🧸','🍓','🦋'];let first=null,lock=false,matches=0,moves=0;
+function setupMemory(){const deck=[...symbols,...symbols].sort(()=>Math.random()-.5);first=null;lock=false;matches=0;moves=0;$('memoryGrid').innerHTML='';$('memoryResult').textContent='';$('memoryStatus').textContent='Moves: 0 · Pairs: 0/6';deck.forEach((symbol,i)=>{const b=document.createElement('button');b.className='tile';b.textContent='?';b.setAttribute('aria-label','Memory card '+(i+1));b.onclick=()=>{if(lock||b.classList.contains('matched')||b===first?.b)return;b.textContent=symbol;b.classList.add('open');if(!first){first={b,symbol};return}moves++;$('memoryStatus').textContent=`Moves: ${moves} · Pairs: ${matches}/6`;if(first.symbol===symbol){b.classList.add('matched');first.b.classList.add('matched');first.b.classList.remove('open');b.classList.remove('open');first=null;matches++;$('memoryStatus').textContent=`Moves: ${moves} · Pairs: ${matches}/6`;if(matches===6){$('memoryResult').textContent=`You matched every pair in ${moves} moves! My favorite match is still us. ♡`;burst()}}else{const old=first.b;lock=true;setTimeout(()=>{old.textContent='?';b.textContent='?';old.classList.remove('open');b.classList.remove('open');first=null;lock=false},650);first=null}};$('memoryGrid').appendChild(b)})}
+$('memoryReset').onclick=setupMemory;setupMemory();
+const quiz=[
+ {q:'What makes an ordinary day feel a little more special?',a:['A tiny message from you','A thousand alarms','Doing every chore twice','A phone with 1% battery'],correct:0,feedback:'A little affection can turn an ordinary moment into a sweet memory. ♡'},
+ {q:'Choose the perfect kind of date for us.',a:['A cozy night and lots of talking','A competition to fold laundry','Staring at a wall silently','A meeting about spreadsheets'],correct:0,feedback:'The best date is about enjoying each other’s company—make this answer your own! 💗'},
+ {q:'What should never run out in our little love story?',a:['Kindness and cuddles','Phone storage only','The list of chores','The alarm clock battery'],correct:0,feedback:'Kindness, care, and cuddles are always worth keeping close. 🫂'}
+];let quizIndex=0,quizScore=0,quizStarted=false;
+function renderQuiz(){const area=$('quizArea');area.innerHTML='';$('quizResult').textContent='';$('quizAgain').classList.add('hidden');if(!quizStarted){area.innerHTML='<p>Ready for three sweet little questions?</p>';return}if(quizIndex>=quiz.length){area.innerHTML=`<div class="pill">Quiz complete · ${quizScore}/${quiz.length} sweet answers</div><p>You made it to the end! The real answer is that this little corner was made to make you smile. ♡</p>`;$('quizNext').classList.add('hidden');$('quizAgain').classList.remove('hidden');burst();return}const item=quiz[quizIndex];area.innerHTML=`<div class="pill">Question ${quizIndex+1} of ${quiz.length}</div><h3 style="font-size:1.1rem;margin:13px 0">${item.q}</h3><div class="choices">${item.a.map((a,i)=>`<button class="choice" data-answer="${i}">${a}</button>`).join('')}</div>`;area.querySelectorAll('[data-answer]').forEach(btn=>btn.onclick=()=>{if(area.dataset.answered==='yes')return;area.dataset.answered='yes';const ans=Number(btn.dataset.answer);if(ans===item.correct)quizScore++;area.querySelectorAll('button').forEach(b=>{b.disabled=true;if(Number(b.dataset.answer)===item.correct)b.classList.add('selected')});$('quizResult').textContent=(ans===item.correct?'Aww, lovely choice! ':'A sweet thought! ')+item.feedback;$('quizNext').textContent=quizIndex===quiz.length-1?'See our result 💗':'Next question →';})}
+$('quizNext').onclick=()=>{if(!quizStarted){quizStarted=true;quizIndex=0;quizScore=0;$('quizNext').textContent='Choose an answer above';renderQuiz();return}const area=$('quizArea');if(quizIndex<quiz.length&&area.dataset.answered!=='yes'){ $('quizResult').textContent='Pick an answer above first, sweetheart ♡';return}quizIndex++;renderQuiz();if(quizIndex<quiz.length)$('quizNext').textContent='Choose an answer above';};$('quizAgain').onclick=()=>{quizIndex=0;quizScore=0;quizStarted=true;$('quizNext').classList.remove('hidden');$('quizNext').textContent='Choose an answer above';renderQuiz()};renderQuiz();
+const SECRET_PASSWORD='1610';
+$('showPass').onclick=()=>{const f=$('secretPassword');f.type=f.type==='password'?'text':'password';$('showPass').textContent=f.type==='password'?'Show':'Hide'};
+function unlock(){if($('secretPassword').value===SECRET_PASSWORD){$('secretMessage').style.display='block';$('secretFeedback').textContent='Unlocked with love. Come a little closer… 💗';burst(['💌','💗','✨'],15)}else{$('secretMessage').style.display='none';$('secretFeedback').textContent='Not quite, sweetheart. Try the special password again. ♡'}}
+$('unlockBtn').onclick=unlock;$('secretPassword').addEventListener('keydown',e=>{if(e.key==='Enter')unlock()});
+$('proposalBtn').onclick=()=>{$('proposalBox').classList.remove('hidden');$('proposalBtn').textContent='Your surprise is open 💍';$('proposalBox').scrollIntoView({behavior:'smooth',block:'nearest'});burst(['🌹','💗','💍','✨'],22)};
+$('yesBtn').onclick=()=>{$('proposalResult').textContent='Then here is a promise: I’ll keep showing up with love, patience, laughter, and a thousand little reasons to smile. 💖';burst(['💗','💍','🌹','💕'],32)};
+$('moreBtn').onclick=()=>{$('proposalResult').textContent='I want the everyday moments, the unexpected adventures, the silly laughs, and the quiet comfort of being on the same team. One little memory at a time, with you. ♡';burst(['🌸','✨','💗'],14)};
+$('hugBtn').onclick=()=>{sendHugs();$('hugResult').textContent='HUG ACTIVATED! Squeeze your pillow for 5 seconds and imagine me hugging you back. 🫂💗'};
+$('kissBtn').onclick=()=>{burst(['😘','💋','💗','💕'],24);$('hugScene').innerHTML='<span class="hug-emoji">😘</span> 💋 <span class="hug-emoji">🥰</span>';$('hugResult').textContent='A little kiss on your forehead, and one on each cheek. Muah! 😘'};
+for(let i=0;i<12;i++){const f=document.createElement('div');f.className='float';f.textContent=['♡','✿','♥','✧','୨୧'][i%5];f.style.left=(Math.random()*100)+'%';f.style.animationDelay=(-Math.random()*10)+'s';f.style.animationDuration=(8+Math.random()*10)+'s';f.style.fontSize=(16+Math.random()*20)+'px';document.body.appendChild(f)}
+</script>
+</body>
+</html>
